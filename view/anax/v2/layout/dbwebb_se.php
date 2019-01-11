@@ -4,6 +4,8 @@ namespace Anax\View;
 
 use Anax\StyleChooser\StyleChooserController;
 
+
+
 /**
  * A layout rendering views in defined regions.
  */
@@ -204,7 +206,7 @@ $route = "route-" . str_replace("/", "-", $di->get("request")->getRoute());
 
 <!-- main -->
 <div class="outer-wrap outer-wrap-main">
-    <div class="inner-wrap inner-wrap-main">
+    <div class="inner-wrap inner-wrap-main"><!--denna minska bredden på innehållet-->
         <div class="row">
 
 <?php
@@ -222,11 +224,18 @@ $class .= empty($class) ? "" : "has-sidebar";
             </div>
             <?php endif; ?>
 
-            <?php if (regionHasContent("main")) : ?>
+            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) !="htdocs") ) : ?> <!--ändra villkor för HEM-->
             <main class="region-main <?= $class ?>" role="main">
                 <?php renderRegion("main") ?>
             </main>
             <?php endif; ?>
+
+            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) =="htdocs") ) : ?> <!--ändra villkor för HEM-->
+            <main class="region-main2 <?= $class ?>" role="main">
+                <?php renderRegion("main") ?>
+            </main>
+            <?php endif; ?>
+
 
             <?php if ($sidebarRight) : ?>
             <div class="wrap-sidebar region-sidebar-right <?= $class ?>" role="complementary">

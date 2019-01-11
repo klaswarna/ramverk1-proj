@@ -11,17 +11,20 @@ return [
     "layout" => [
         "region" => "layout",
         "template" => "anax/v2/layout/dbwebb_se",
+        //"template" => "anax/v2/layout/default",
         "data" => [
-            "baseTitle" => " | ramverk1",
+            "baseTitle" => " | Grammatikgrottan",
             "bodyClass" => null,
             "favicon" => "favicon.ico",
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
-                "css/dbwebb-se.min.css",
+                //"css/dbwebb-se.min.css",
+                "css/min-stajl.css",
             ],
             "javascripts" => [
-                "js/responsive-menu.js",
+                "js/responsive-menu.js"
+
             ],
         ],
     ],
@@ -33,19 +36,19 @@ return [
             "template" => "anax/v2/header/site_logo",
             "data" => [
                 "class" => "large",
-                "siteLogo"      => "image/theme/leaf_256x256.png",
+                "siteLogo"      => "image/logo.jpg",
                 "siteLogoAlt"   => "Löv",
             ],
         ],
         [
-            "region" => "header-col-1",
-            "template" => "anax/v2/header/site_logo_text",
-            "data" => [
-                "homeLink"      => "",
-                "siteLogoText"  => "ramverk1",
-                "siteLogoTextIcon" => "image/theme/leaf_40x40.png",
-                "siteLogoTextIconAlt" => "Löv-bild",
-            ],
+          "region" => "header-col-1",
+             "template" => "anax/v2/header/site_logo_text",
+             "data" => [
+                 "homeLink"      => "",
+                 "siteLogoText"  => "",
+                 "siteLogoTextIcon" => "image/logotest4.png",
+                 "siteLogoTextIconAlt" => "Löv-bild",
+             ],
         ],
         [
             "region" => "header-col-2",
@@ -58,8 +61,10 @@ return [
             "region" => "header-col-3",
             "template" => "anax/v2/navbar/responsive_submenus",
             "data" => [
-                "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
-            ],
+            "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
+            "siteLogoText" => "kuken",
+            "siteLogo"=>"image/logo.jpg"
+         ],
         ],
         [
             "region" => "footer",
@@ -75,10 +80,14 @@ return [
                         "template" => "anax/v2/block/default",
                         "contentRoute" => "block/footer-col-2",
                     ],
+                    // [
+                    //      "template" => "anax/v2/block/default",
+                    //      "contentRoute" => "block/footer-col-3",
+                    // ],
                     [
-                        "template" => "anax/v2/block/default",
-                        "contentRoute" => "block/footer-col-3",
-                    ]
+                         "template" => "anax/v2/footer3/footer3",
+                         //"contentRoute" => "block/footer-col-2",
+                    ],
                 ]
             ],
             "sort" => 1
@@ -92,5 +101,12 @@ return [
             ],
             "sort" => 2
         ],
+        [//egen av klas så att banderollen kommer med på alla sidor
+            "region" => "flash",
+            "template"=> "anax/v2/image/default",
+            "data" => [
+                "src" => "image/grotta.jpg?width=1100&height=150&crop-to-fit&area=0,0,30,0"
+                    ]
+        ]
     ],
 ];

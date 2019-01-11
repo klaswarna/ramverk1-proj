@@ -1,3 +1,3 @@
-#### Redovisa på GitHub
+#### GitHub
 
-Skriv något kort om ditt redovisa-repo och länka till [repot för me/redovisa på GitHub](XXX).
+Denna sida finns som  [repo på github](https://github.com/klaswarna/ramverk1-proj).

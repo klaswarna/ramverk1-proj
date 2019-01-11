@@ -1,3 +1,3 @@
-#### Footer col 2
+Webbplatsen är ett examinerings-projekt i kursen [Ramverk 1](https://dbwebb.se/kurser/ramverk1-v2)
 
-Med brödtext i ett stycke som säger något trevligt om just detta block, eller kanske en lista av länkar.
+[Här finns sidan tillgänglig på github](https://github.com/klaswarna/ramverk1-proj)
