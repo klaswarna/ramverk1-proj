@@ -19,9 +19,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.2",
-        "anax/anax-flat" : "^1.0.0",
-        "anax/database" : "^2.0.0",
-        "anax/cache" : "^2.0.0@beta",
+        "anax/anax-ramverk1-me" : "^1.0.0",
         "michelf/php-markdown": "^1.8"
     },
     "require-dev": {
