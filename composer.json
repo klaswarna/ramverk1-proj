@@ -1,5 +1,6 @@
 {
     "name" : "klaswarna/ramverk1-proj",
+    "type": "composer-plugin",
     "description": "Grammatikgrottan - a stackoverflow-like page. An examination project for ramverk1 course.",
     "license": "MIT",
     "authors": [
