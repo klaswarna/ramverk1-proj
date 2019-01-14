@@ -20,8 +20,4 @@ In the command line type:
 composer require klaswarna/ramverk1-proj
 </code></pre>
 
-
-please add
-    "KW\\": "src/"
-
-to autoload in composer.json
+Besides, to make it work properly you have to setup database. For this use <pre><code> setup.sql, ddl.sql, insert.sql </code></pre> found in the sql folder.
