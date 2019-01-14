@@ -2,6 +2,13 @@
     "name" : "klaswarna/ramverk1-proj",
     "description": "A me page for the ramverk1 course.",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Klas Wärnå",
+            "email": "klaa17@student.bth.se",
+            "role": "Developer Student"
+        }
+    ],
     "minimum-stability": "beta",
     "prefer-stable": true,
     "autoload": {
@@ -11,6 +18,7 @@
         }
     },
     "require": {
+        "php": ">=7.2",
         "anax/anax-ramverk1-me": "^1.0.0",
         "anax/database": "^2.0",
         "michelf/php-markdown": "^1.8"
