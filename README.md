@@ -1,10 +1,9 @@
-# ramverk1-proj
-
-
-Installing IP Weather Service as an Anax module
+Installing ramverk1-proj
 ======================================================
 
-[![Build Status](https://travis-ci.org/klaswarna/ramverk1-proj.svg?branch=master)
+
+
+[![Build Status](https://travis-ci.org/klaswarna/ramverk1-proj.svg?branch=master)](https://travis-ci.org/klaswarna/ramverk1-proj)
 
 
 
