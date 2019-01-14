@@ -18,9 +18,13 @@ namespace Anax\View;
 </p>
 
 
-<?php foreach ($res as $tags){ ?>
+<?php
+foreach ($res as $tags) {
+?>
     <a class="sidolank2" href="<?=url("fragor/tagg/" . $tags->tagg)?>"><div class="taggruta litestorre"><?=$tags->tagg?></div></a>
-<?php } ?>
+<?php
+}
+?>
 
 
 

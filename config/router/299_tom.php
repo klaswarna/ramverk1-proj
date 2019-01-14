@@ -6,7 +6,7 @@ return [
     "routes" => [
         [
             "info" => "Controller for index-page",
-            "mount" => "/",
+            "mount" => "",
             "handler" => "\KW\Inlagg\StartController",
         ],
     ]

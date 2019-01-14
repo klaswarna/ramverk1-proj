@@ -7,7 +7,7 @@ namespace Anax\View;
 
 $base=$this->di->request->getBaseUrl();
 $end=$this->di->request->getCurrentUrl();
-$retursida= url() . str_replace($base,"", $end);
+$retursida= url() . str_replace($base, "", $end);
 
 $sortFr = $this->di->request->getGet("sortfr");
 
@@ -19,7 +19,7 @@ $grund = explode("?", $retursida);
 ?>
 <h1>Alla frågor
 
-<?php if(isset($tagg)) { ?>
+<?php if (isset($tagg)) { ?>
     med taggen "<?=$tagg?>"
 <?php } ?>
 
@@ -29,18 +29,18 @@ $grund = explode("?", $retursida);
 
 <table class="sorttable vanster">
     <tr class="fragtabrad">
-<?php if($sortFr == "rankning" || $sortFr == null) { ?>
+<?php if ($sortFr == "rankning" || $sortFr == null) { ?>
     <td>Sortera efter: </td><td class="bredd"><b>poäng</b></td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortfr" . "=" . "published")?>'>datum</a></td>
 <?php  } ?>
 
-<?php if($sortFr == "published") { ?>
+<?php if ($sortFr == "published") { ?>
     <td>Sortera efter:</td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortfr" . "=" . "rankning")?>'>poäng </a></td><td class="bredd"> <b>datum</b></td>
 <?php  } ?>
 </tr>
 </table>
 
 
-<?php if($this->di->session->get("anvandarid")) { ?>
+<?php if ($this->di->session->get("anvandarid")) { ?>
 
     <a href="#frageform">
     <div class="hoger sidolank2"> <i class="fa fa-pencil-alt" aria-hidden="true"></i>Skriv ny fråga</div>
@@ -57,7 +57,7 @@ $grund = explode("?", $retursida);
 
 
 
-<?php foreach ($res as $key=>$row) { ?>
+<?php foreach ($res as $key => $row) { ?>
 
 
 
@@ -67,7 +67,7 @@ $grund = explode("?", $retursida);
         </a>
         <i>Postat <?=$row->published?> av <?=$row->anvandarnamn?></i>
         <br>
-        <?php foreach ($taggar[$key] as $tags){ ?>
+        <?php foreach ($taggar[$key] as $tags) { ?>
             <a class="sidolank2" href="<?=url("fragor/tagg/" . $tags->tagg)?>"><div class="taggruta"><?=$tags->tagg?></div></a>
 
         <?php } ?>

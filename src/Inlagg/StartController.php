@@ -2,27 +2,17 @@
 
 namespace KW\Inlagg;
 
-
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
-
-//use KW\Inlagg\TextFilter;
-//use KW\Inlagg\Slugify;
-//use KW\Inlagg\Hamtaren;
-use KW\Inlagg\Fragehamtaren;
-
 
 class StartController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
     public function indexActionGet()
     {
-        $fragehamtaren = new \KW\Inlagg\Fragehamtaren($this->di);
-        $res = $fragehamtaren->hamtaSenasteInlagg();
+        $fragehamtaren = new Fragehamtaren($this->di);
+        $res  = $fragehamtaren->hamtaSenasteInlagg();
         $res2 = $fragehamtaren->popularasteTaggar();
         $res3 = $fragehamtaren->aktivasteAnvandare();
 
@@ -43,15 +33,8 @@ class StartController implements ContainerInjectableInterface
             "res2" => $res2,
             ]);
 
-
         return $page->render([
             "title"=>"Hem"
         ]);
-
-
-
-
     }
-
-
 }

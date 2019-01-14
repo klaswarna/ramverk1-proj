@@ -2,14 +2,8 @@
 
 namespace KW\Inlagg;
 
-/**
- * Slygifies titles
- *
- */
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
 
 class Posta implements ContainerInjectableInterface
 {
@@ -40,7 +34,6 @@ class Posta implements ContainerInjectableInterface
 
     public function postaSvar($data, $userid, $tillhor, $type)
     {
-        //här skall oxå göras nåt med rankning
         $db = $this->di->get("db");
         $db->connect();
         $sql = "INSERT INTO inlagg (`data`, `userid`, `tillhor`, `type`, `rankning`) VALUES (?, ?, ?, ?, ?);";
@@ -53,7 +46,7 @@ class Posta implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        foreach($nyataggar as $value) {
+        foreach ($nyataggar as $value) {
             $sql = "INSERT INTO taggar (`tagg`) VALUES (?);";
             $db->execute($sql, [$value]);
         }

@@ -1,7 +1,4 @@
 <?php
-namespace KW\Inlagg;
-
-//$textFilter = new TextFilter();
 
 namespace Anax\View;
 
@@ -16,7 +13,7 @@ namespace Anax\View;
 <p>Är man medlem kan man ställa frågor och skriva svar. Du kan registrera dig via LOGGA IN > Skapa ny användare</p>
 
 
-<?php foreach ($res as $row){ ?>
+<?php foreach ($res as $row) { ?>
     <a class="sidolank2" href="<?=url("anvandare/anvandarid/" . $row->anvandarid)?>">
         <div class="anvandare">
             <img src='https://www.gravatar.com/avatar/<?php echo(md5(strtolower(trim($row->email)))) ?>?s=60&d=mp'>

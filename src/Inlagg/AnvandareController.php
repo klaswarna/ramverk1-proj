@@ -2,43 +2,21 @@
 
 namespace KW\Inlagg;
 
-
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
-
-//use KW\Inlagg\TextFilter;
-//use KW\Inlagg\Slugify;
-//use KW\Inlagg\Hamtaren;
-//use KW\Inlagg\Fragehamtaren;
-//use KW\Inlagg\Hamtaren;
 
 class AnvandareController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-    //private $textFilter;
-    //private $slugify;
-
-
-    // public function __construct()
-    // {
-    //     $this->textFilter = new TextFilter();
-    //     $this->slugify = new Slugify();
-    // }
-
     public function indexActionGet()
     {
-        $hamtaren = new Hamtaren($this->di);
-
-        $res = $hamtaren->allaAnvandare();
-
+        $anvandare = new Anvandare($this->di);
+        $res = $anvandare->allaAnvandare();
         $page = $this->di->get("page");
         $page->add("anax/v2/anvandare/anvandare", [
             "res" => $res,
         ]);
-
         return $page->render([
             "title"=>"Användare",
         ]);
@@ -46,55 +24,50 @@ class AnvandareController implements ContainerInjectableInterface
 
     public function anvandaridActionGet($id)
     {
-        $hamtaren = new Hamtaren($this->di);
-        $fragehamtaren = new Fragehamtaren($this->di);
-        $res = $hamtaren->enAnvandare($id);
-        $res2 = $hamtaren->anvandarensFragor($id);
-        $page = $this->di->get("page");
+        $anvandare      = new Anvandare($this->di);
+        $taggar         = new Taggar($this->di);
+        $fragehamtaren  = new Fragehamtaren($this->di);
+
+        $taggarna   = [];
+        $antalsvar  = [];
+        $sluggar    = [];
+
+        $res    = $anvandare->enAnvandare($id);
+        $res2   = $anvandare->anvandarensFragor($id);
+        $page   = $this->di->get("page");
         $page->add("anax/v2/anvandare/anvandarid", [
             "res" => $res,
         ]);
 
 
-
-
-
-        $taggar = [];
-        $antalsvar = [];
-        foreach($res2 as $rad) {
-            $tags = $fragehamtaren->hamtaTaggar($rad->id);
-            array_push($taggar, $tags);
+        foreach ($res2 as $rad) {
+            $tags   = $taggar->hamtaTaggar($rad->id);
             $nrsvar = $fragehamtaren->raknaSvar($rad->id);
+            array_push($taggarna, $tags);
             array_push($antalsvar, $nrsvar);
         }
 
         $page->add("anax/v2/anvandare/anvandarensfragor", [
-            "res" => $res,
-            "res2"=>$res2,
-            "taggar"=>$taggar,
-            "antalsvar"=>$antalsvar
+            "res"       => $res,
+            "res2"      => $res2,
+            "taggarna"  => $taggarna,
+            "antalsvar" => $antalsvar
         ]);
 
-        $res3 = $hamtaren->anvandarensSvar($id);
+        $res3 = $anvandare->anvandarensSvar($id);
 
-        $sluggar = [];
-
-        foreach($res3 as $rad) {
-            $slugg = $hamtaren->inlaggetHarSluggen($rad->tillhor);
+        foreach ($res3 as $rad) {
+            $slugg = $this->hamtaren->inlaggetHarSluggen($rad->tillhor);
             array_push($sluggar, $slugg);
         }
 
-
         $page->add("anax/v2/anvandare/anvandarenssvar", [
-            "res" => $res,
-            "sluggar"=>$sluggar,
-            "res3"=>$res3,
+            "res"       => $res,
+            "sluggar"   => $sluggar,
+            "res3"      => $res3,
         ]);
-
         return $page->render([
             "title"=>"Användare",
         ]);
     }
-
-
 }

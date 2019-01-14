@@ -2,19 +2,12 @@
 
 namespace KW\Inlagg;
 
-/**
- * Slygifies titles
- *
- */
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
 
 class Hamtaren implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
-
 
     public function __construct($di)
     {
@@ -32,7 +25,7 @@ class Hamtaren implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE slug=?;";
+        $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE slug=?;";
         $res = $db->executeFetch($sql, [$slug]);
 
         return $res;
@@ -43,9 +36,9 @@ class Hamtaren implements ContainerInjectableInterface
         $db = $this->di->get("db");
         $db->connect();
         if ($sortko == "rankning") {
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE tillhor=? AND type='kommentar' ORDER BY rankning DESC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE tillhor=? AND type='kommentar' ORDER BY rankning DESC;";
         } else {
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE tillhor=? AND type='kommentar' ORDER BY published ASC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE tillhor=? AND type='kommentar' ORDER BY published ASC;";
         }
         $res = $db->executeFetchAll($sql, [$tillhor]);
 
@@ -59,10 +52,9 @@ class Hamtaren implements ContainerInjectableInterface
         $db = $this->di->get("db");
         $db->connect();
         if ($sortsv == "rankning") {
-
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE tillhor=? AND type='svar' ORDER BY rankning DESC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE tillhor=? AND type='svar' ORDER BY rankning DESC;";
         } else {
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE tillhor=? AND type='svar' ORDER BY published ASC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE tillhor=? AND type='svar' ORDER BY published ASC;";
         }
 
         $res = $db->executeFetchAll($sql, [$tillhor]);
@@ -104,25 +96,6 @@ class Hamtaren implements ContainerInjectableInterface
         return $sluggarna;
     }
 
-    public function allaAnvandare()
-    {
-        $db = $this->di->get("db");
-        $db->connect();
-        $sql = "SELECT * FROM anvandare;";
-        $res = $db->executeFetchAll($sql);
-
-        return $res;
-    }
-
-    public function enAnvandare($id)
-    {
-        $db = $this->di->get("db");
-        $db->connect();
-        $sql = "SELECT * FROM anvandare WHERE anvandarid=?;";
-        $res = $db->executeFetch($sql,[$id]);
-
-        return $res;
-    }
 
     public function max($tal)
     {
@@ -132,31 +105,13 @@ class Hamtaren implements ContainerInjectableInterface
         return 80;
     }
 
-    public function anvandarensFragor($userid)
-    {
-        $db = $this->di->get("db");
-        $db->connect();
-        $sql = "SELECT * FROM inlagg WHERE userid=? AND type='fraga';";
-        $res = $db->executeFetchAll($sql,[$userid]);
-        return $res;
-    }
-
-    public function anvandarensSvar($userid)
-    {
-        $db = $this->di->get("db");
-        $db->connect();
-        $sql = "SELECT * FROM inlagg WHERE userid=? AND type='svar';";
-        $res = $db->executeFetchAll($sql,[$userid]);
-        return $res;
-    }
 
     public function inlaggetHarSluggen($id)
     {
         $db = $this->di->get("db");
         $db->connect();
         $sql = "SELECT slug, title FROM inlagg WHERE id=?;";
-        $res = $db->executeFetch($sql,[$id]);
+        $res = $db->executeFetch($sql, [$id]);
         return $res;
     }
-
 }

@@ -4,8 +4,6 @@ namespace Anax\View;
 
 use Anax\StyleChooser\StyleChooserController;
 
-
-
 /**
  * A layout rendering views in defined regions.
  */
@@ -224,13 +222,13 @@ $class .= empty($class) ? "" : "has-sidebar";
             </div>
             <?php endif; ?>
 
-            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) !="htdocs") ) : ?> <!--ändra villkor för HEM-->
+            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) !="htdocs")) : ?> <!--ändra villkor för HEM-->
             <main class="region-main <?= $class ?>" role="main">
                 <?php renderRegion("main") ?>
             </main>
             <?php endif; ?>
 
-            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) =="htdocs") ) : ?> <!--ändra villkor för HEM-->
+            <?php if (regionHasContent("main") && (substr(currentUrl(), -6) =="htdocs")) : ?> <!--ändra villkor för HEM-->
             <main class="region-main2 <?= $class ?>" role="main">
                 <?php renderRegion("main") ?>
             </main>

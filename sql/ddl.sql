@@ -7,8 +7,8 @@ USE grammatikgruvan;
 -- Create table for users
 --
 
-DROP TABLE IF EXISTS anvandare;
-CREATE TABLE anvandare (
+DROP TABLE IF EXISTS anvandare2;
+CREATE TABLE anvandare2 (
     `anvandarid` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `anvandarnamn` VARCHAR(40),
     `losenord` VARCHAR(40),
@@ -50,7 +50,7 @@ CREATE TABLE `inlagg`
   `userid` INT,
   `tillhor` INT,
   `godkant` BOOLEAN,
- FOREIGN KEY (userid) REFERENCES anvandare(anvandarid)
+ FOREIGN KEY (userid) REFERENCES anvandare2(anvandarid)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 
 DROP TABLE IF EXISTS taggar;

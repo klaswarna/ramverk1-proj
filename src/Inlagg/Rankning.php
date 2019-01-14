@@ -2,19 +2,12 @@
 
 namespace KW\Inlagg;
 
-/**
- * Slygifies titles
- *
- */
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
 
 class Rankning implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
-
 
     public function __construct($di)
     {
@@ -55,7 +48,7 @@ class Rankning implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "UPDATE anvandare SET " .$kategori. " = " .$kategori. " + " . $varde . " WHERE anvandarid = ?;";
+        $sql = "UPDATE anvandare2 SET " .$kategori. " = " .$kategori. " + " . $varde . " WHERE anvandarid = ?;";
         $db->execute($sql, [$id]);
         return;
     }
@@ -68,5 +61,4 @@ class Rankning implements ContainerInjectableInterface
         $res = $db->executeFetch($sql, [$id]);
         return $res;
     }
-
 }

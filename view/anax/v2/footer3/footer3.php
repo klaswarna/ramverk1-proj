@@ -1,24 +1,25 @@
 <?php
 namespace Anax\View;
 
-
- if (null==($this->di->session->get("anvandarnamn"))) { ?>
+if (null==($this->di->session->get("anvandarnamn"))) { ?>
         <p>Du är inte inloggad</p>
 
 
         <div id="loginknapp" class="uppeinavbaren"> <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Logga in</div>
-    <?php } else { ?>
+<?php
+} else {
+?>
         <p>Du är inloggad som <b><?= $this->di->session->get("anvandarnamn") ?></b></p>
         <div class="uppeinavbaren">
             <a href="<?=url("minsida")?>" class="notextdec" >
                 <img   src='https://www.gravatar.com/avatar/<?php echo(md5(strtolower(trim($this->di->session->get("email"))))) ?>?s=40&d=mp'>
             </a>
 
-            <a href='<?=url("inlagg/loggaut")?>' class="logutknapp upplite">&nbsp; Logga ut  &nbsp; <i class="fa fa-sign-out-alt" aria-hidden="true"></i></a></div>
+            <a href='<?=url("inlogg/loggaut")?>' class="logutknapp upplite">&nbsp; Logga ut  &nbsp; <i class="fa fa-sign-out-alt" aria-hidden="true"></i></a></div>
 
-    <?php } ?>
-
-
+<?php
+}
+?>
 
 
 
@@ -35,9 +36,8 @@ namespace Anax\View;
 <div class="padding">
 
 
-    <!--form method="post" action="/dbwebb/oophp/me/kmom10/proj/htdocs/loggain"-->
 
-    <form method="post" action='<?=url("inlagg/loggain")?>'>
+    <form method="post" action='<?=url("inlogg/loggain")?>'>
         <br>Användarnamn:<br>
         <input id="anvandarnamn" type="text" name="anvandarnamn"><br>
         <br>Lösenord:<br>
@@ -58,8 +58,6 @@ namespace Anax\View;
 
 
 <script>
-
-console.log("inlogg.js läst");
     var loginknapp = window.document.getElementById("loginknapp");
 
     if (loginknapp != null) {
@@ -67,11 +65,10 @@ console.log("inlogg.js läst");
             window.document.getElementById("inmatalosen").classList.remove("osynlig");
         });
     }
+
     var stang = window.document.getElementById("stang");
 
     stang.addEventListener("click", function() {
         window.document.getElementById("inmatalosen").classList.add("osynlig");
     });
-
-
 </script>

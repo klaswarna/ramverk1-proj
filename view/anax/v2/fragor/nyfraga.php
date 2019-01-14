@@ -3,7 +3,7 @@ namespace Anax\View;
 
 $base=$this->di->request->getBaseUrl();
 $end=$this->di->request->getCurrentUrl();
-$retursida= url() . str_replace($base,"", $end);
+$retursida= url() . str_replace($base, "", $end);
 
 ?>
 
@@ -17,7 +17,7 @@ $retursida= url() . str_replace($base,"", $end);
     <textarea form="frageform" name="data">Skriv din fråga här...</textarea>
 <br>Koppla befintliga taggar:<br>
 <div class="klicktaggarna">
-<?php foreach ($alltags as $key=>$tag) { ?>
+<?php foreach ($alltags as $key => $tag) { ?>
     <input type="checkbox" name="tag[]" value="<?=$key + 1?>"><div class="taggruta"><?=$tag->tagg?></div>
 <?php } ?>
 </div>

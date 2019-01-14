@@ -6646,9 +6646,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 
 
 .rankruta {
-    di
     display:none;
-    /*för att bli av med hamburgermenyn*/splay: inline;
+    /*för att bli av med hamburgermenyn display: inline;*/
     float:right;
     font-size: 2em;
     width: 2em;
@@ -6671,9 +6670,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
     border-radius: 3px;
     border: solid 1px;
 }
-
-
-
 
 .sidolank {
     text-decoration: none;
@@ -6699,6 +6695,19 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 }
 
 .sidolank2:hover {
+    color:#ae6625;
+}
+
+.sidolank3 {
+
+    color: black;
+}
+
+.sidolank3:visited {
+    color:black;
+}
+
+.sidolank3:hover {
     color:#ae6625;
 }
 
@@ -6878,8 +6887,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .region-header-col-1 img {
     position: fixed;
     right: 0;
-    top: 70px;
-    width: 200px;
+    top: 60px;
+    width: 180px;
 
 
 }
@@ -6996,5 +7005,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .minskatitel {
     font-size: 2.3em;
 }
-
+.minskadbild {
+    width:20%;
 }

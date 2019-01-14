@@ -2,16 +2,12 @@
 
 namespace KW\Inlagg;
 
-
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
 
 class Inloggaren implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
-
 
     public function __construct($di)
     {
@@ -23,16 +19,16 @@ class Inloggaren implements ContainerInjectableInterface
 
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "SELECT anvandarid, anvandarnamn, email FROM anvandare WHERE anvandarnamn=? AND losenord=?;";
+        $sql = "SELECT anvandarid, anvandarnamn, email FROM anvandare2 WHERE anvandarnamn=? AND losenord=?;";
         $res = $db->executeFetch($sql, [$anvandarnamn, MD5($losenord)]);
 
         if (is_null($res)) {
-            return FALSE;
+            return false;
         }
         $this->di->get("session")->set("anvandarid", $res->anvandarid);
         $this->di->get("session")->set("anvandarnamn", $res->anvandarnamn);
         $this->di->get("session")->set("email", $res->email);
-        return TRUE;
+        return true;
     }
 
 
@@ -40,21 +36,19 @@ class Inloggaren implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "SELECT * FROM anvandare WHERE anvandarnamn=?;";
+        $sql = "SELECT * FROM anvandare2 WHERE anvandarnamn=?;";
         $res = $db->executeFetch($sql, [$anvandarnamn]);
         if ($res == null) {
-            return FALSE;
+            return false;
         }
-        return TRUE;
+        return true;
     }
-
-
 
     public function skapaNyanvandare($anvandarnamn, $losenord, $email)
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "INSERT INTO `anvandare` (`anvandarnamn`, `losenord`, `email`, `fraga`, `svar`, `kommentar`, `rfraga`, `rsvar`, `rkommentar`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO `anvandare2` (`anvandarnamn`, `losenord`, `email`, `fraga`, `svar`, `kommentar`, `rfraga`, `rsvar`, `rkommentar`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $db->execute($sql, [$anvandarnamn, MD5($losenord), $email, 0, 0 ,0 ,0 ,0 ,0]);
         return;
     }
@@ -63,19 +57,8 @@ class Inloggaren implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = 'UPDATE anvandare SET ' . $typ . ' = "'  . $varde . '" WHERE anvandarid = ?;';
+        $sql = 'UPDATE anvandare2 SET ' . $typ . ' = "'  . $varde . '" WHERE anvandarid = ?;';
         $db->execute($sql, [$this->di->session->get("anvandarid")]);
         return;
     }
-
-
-
-//$this->di->get("response")->redirect("book")->send();
-
-
-//$this->di->get("response")->redirectSelf()->send();
-
-
-
-
 }

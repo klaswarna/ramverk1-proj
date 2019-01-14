@@ -2,21 +2,12 @@
 
 namespace KW\Inlagg;
 
-/**
- * Slygifies titles
- *
- */
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-
 
 class Fragehamtaren implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
-
-
-
 
     public function __construct($di)
     {
@@ -28,7 +19,7 @@ class Fragehamtaren implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY published DESC LIMIT 3;";
+        $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY published DESC LIMIT 3;";
         $res = $db->executeFetchAll($sql);
 
         return $res;
@@ -39,9 +30,9 @@ class Fragehamtaren implements ContainerInjectableInterface
         $db = $this->di->get("db");
         $db->connect();
         if ($sort == "published") {
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY published ASC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY published ASC;";
         } else {
-            $sql = "SELECT * FROM inlagg JOIN anvandare ON anvandare.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY rankning DESC;";
+            $sql = "SELECT * FROM inlagg JOIN anvandare2 ON anvandare2.anvandarid=inlagg.userid WHERE type='fraga' ORDER BY rankning DESC;";
         }
 
         $res = $db->executeFetchAll($sql);
@@ -73,12 +64,11 @@ class Fragehamtaren implements ContainerInjectableInterface
         $db = $this->di->get("db");
         $db->connect();
         if ($sort == "published") {
-            $sql = "SELECT * FROM ((inlaggtagg JOIN taggar ON inlaggtagg.tagg = taggar.taggid) JOIN inlagg ON inlagg.id = inlaggtagg.inlagg) JOIN anvandare ON inlagg.userid = anvandare.anvandarid WHERE taggar.tagg=? ORDER BY published ASC;";
+            $sql = "SELECT * FROM ((inlaggtagg JOIN taggar ON inlaggtagg.tagg = taggar.taggid) JOIN inlagg ON inlagg.id = inlaggtagg.inlagg) JOIN anvandare2 ON inlagg.userid = anvandare2.anvandarid WHERE taggar.tagg=? ORDER BY published ASC;";
         } else {
-            $sql = "SELECT * FROM ((inlaggtagg JOIN taggar ON inlaggtagg.tagg = taggar.taggid) JOIN inlagg ON inlagg.id = inlaggtagg.inlagg) JOIN anvandare ON inlagg.userid = anvandare.anvandarid WHERE taggar.tagg=? ORDER BY rankning DESC;";
+            $sql = "SELECT * FROM ((inlaggtagg JOIN taggar ON inlaggtagg.tagg = taggar.taggid) JOIN inlagg ON inlagg.id = inlaggtagg.inlagg) JOIN anvandare2 ON inlagg.userid = anvandare2.anvandarid WHERE taggar.tagg=? ORDER BY rankning DESC;";
         }
-
-        $res = $db->executeFetchAll($sql,[$tagg]);
+        $res = $db->executeFetchAll($sql, [$tagg]);
 
         return $res;
     }
@@ -88,9 +78,8 @@ class Fragehamtaren implements ContainerInjectableInterface
 
         $db = $this->di->get("db");
         $db->connect();
-
         $sql = "SELECT COUNT(tillhor) AS nr  FROM inlagg WHERE tillhor=?";
-        $res = $db->executeFetch($sql,[$id]);
+        $res = $db->executeFetch($sql, [$id]);
 
         return $res;
     }
@@ -108,9 +97,8 @@ class Fragehamtaren implements ContainerInjectableInterface
     {
         $db = $this->di->get("db");
         $db->connect();
-        $sql = "SELECT fraga + svar + kommentar + rsvar + rfraga + rkommentar AS aktivitet, anvandarid, anvandarnamn, email, datum FROM anvandare ORDER BY aktivitet DESC LIMIT 3;";
+        $sql = "SELECT fraga + svar + kommentar + rsvar + rfraga + rkommentar AS aktivitet, anvandarid, anvandarnamn, email, datum FROM anvandare2 ORDER BY aktivitet DESC LIMIT 3;";
         $res = $db->executeFetchAll($sql);
         return $res;
     }
-
 }

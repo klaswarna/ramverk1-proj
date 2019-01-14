@@ -16,6 +16,7 @@ return [
             "baseTitle" => " | Grammatikgrottan",
             "bodyClass" => null,
             "favicon" => "favicon.ico",
+            //"favicon" => "logo.ico",
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
@@ -36,8 +37,8 @@ return [
             "template" => "anax/v2/header/site_logo",
             "data" => [
                 "class" => "large",
-                "siteLogo"      => "image/logo.jpg",
-                "siteLogoAlt"   => "Löv",
+                "siteLogo"      => "image/logo.png",
+                "siteLogoAlt"   => "ojoj",
             ],
         ],
         [
@@ -46,8 +47,8 @@ return [
              "data" => [
                  "homeLink"      => "",
                  "siteLogoText"  => "",
-                 "siteLogoTextIcon" => "image/logotest4.png",
-                 "siteLogoTextIconAlt" => "Löv-bild",
+                 "siteLogoTextIcon" => "image/Grammatikgrottan-logga.png",
+                 "siteLogoTextIconAlt" => "logga",
              ],
         ],
         [
@@ -61,10 +62,10 @@ return [
             "region" => "header-col-3",
             "template" => "anax/v2/navbar/responsive_submenus",
             "data" => [
-            "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
-            "siteLogoText" => "kuken",
-            "siteLogo"=>"image/logo.jpg"
-         ],
+                "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
+                "siteLogoText" => "kuken",
+                "siteLogo"=>"image/logo.jpg"
+            ],
         ],
         [
             "region" => "footer",

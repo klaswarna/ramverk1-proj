@@ -2,10 +2,6 @@
 
 namespace KW\Inlagg;
 
-/**
- * Slygifies titles
- *
- */
 class Sorteraren
 {
 
@@ -16,7 +12,7 @@ class Sorteraren
     }
 
     //samla fråga kommentarer, svar kommentarer i en tabell
-    public function SorteraFragorOchSvar($slug, $sortsv, $sortko)
+    public function sorteraFragorOchSvar($slug, $sortsv, $sortko)
     {
         $res = [];
 
@@ -37,7 +33,7 @@ class Sorteraren
         foreach ($svaren as $value) {
             array_push($res, $value);//lägger till själva svaren ett och ett
             $kommentarerna = $this->hamtaren->hamtaKommentarer($value->id, $sortko);
-            foreach($kommentarerna as $komvalue) {
+            foreach ($kommentarerna as $komvalue) {
                 array_push($res, $komvalue);//lägger till kommentarer ett och ett
             }
         }

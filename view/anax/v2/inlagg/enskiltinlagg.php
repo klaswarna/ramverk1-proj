@@ -3,36 +3,33 @@ namespace KW\Inlagg;
 
 $textFilter = new TextFilter();
 
-
 namespace Anax\View;
 
-$base=$this->di->request->getBaseUrl();
-$end=$this->di->request->getCurrentUrl();
-$retursida= url() . str_replace($base,"", $end);
-
-$sortSv = $this->di->request->getGet("sortsv");
-$sortKo = $this->di->request->getGet("sortko");
-$grund = explode("?", $retursida);
-
+$base       = $this->di->request->getBaseUrl();
+$end        = $this->di->request->getCurrentUrl();
+$retursida  = url() . str_replace($base, "", $end);
+$sortSv     = $this->di->request->getGet("sortsv");
+$sortKo     = $this->di->request->getGet("sortko");
+$grund      = explode("?", $retursida);
 ?>
 
 <h1><?= $res[0]->title ?></h1>
 <b>Sortering</b>
 <table class="sorttable">
     <tr class="svartabrad">
-<?php if($sortSv == "rankning") { ?>
+<?php if ($sortSv == "rankning") { ?>
     <td> Svaren: </td><td class="bredd"><b>poäng</b></td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortsv" . "=" . "published" . "&sortko=" . $sortKo)?>'>datum</a></td>
 <?php  } ?>
 
-<?php if($sortSv == "published") { ?>
+<?php if ($sortSv == "published") { ?>
     <td>Svaren:</td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortsv" . "=" . "rankning" . "&sortko=" . $sortKo)?>'>poäng </a></td><td class="bredd"> <b>datum</b></td>
 <?php  } ?>
 </tr>
 <tr class="komtabrad">
-<?php if($sortKo == "rankning") { ?>
+<?php if ($sortKo == "rankning") { ?>
     <td>Kommentarer:</td><td class="bredd"> <b>poäng</b></td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortsv" . "=" . $sortSv . "&sortko=" . "published")?>'>datum</a></td>
 <?php  } ?>
-<?php if($sortKo == "published") { ?>
+<?php if ($sortKo == "published") { ?>
     <td>Kommentarer:</td><td class="bredd"> <a class="sidolank" href='<?=($grund[0] . "?sortsv" . "=" . $sortSv . "&sortko=" . "rankning")?>'>poäng </a></td><td class="bredd"><b>datum</b></td>
 <?php  } ?>
 </tr>
@@ -53,7 +50,7 @@ $grund = explode("?", $retursida);
                 </a>
                 <i>Postat <?=$row->published?> av <div id="user<?=$row->id?>" class="inl"> <?=$row->anvandarnamn?> </div></i>
                 <br>
-                <?php foreach ($taggar as $tags){ ?>
+                <?php foreach ($taggar as $tags) { ?>
                     <a class="sidolank2" href="<?=url("fragor/tagg/" . $tags->tagg)?>"><div class="taggruta"><?=$tags->tagg?></div></a>
                 <?php } ?>
 
@@ -74,20 +71,17 @@ $grund = explode("?", $retursida);
                 </div>
 
 
-
-
                 <p><b><?=$row->title?></b></p>
                 <p><?=$textFilter->parse($row->data, "markdown")?></p>
 
                 <?php if (null!=($this->di->session->get("anvandarnamn"))) { ?>
-
 
                     <div id="svarknapp" class="skrivsvar">
                     Skriv ett SVAR
                     </div>
                     <div id="svarform" class="skrivarea osynlig">
                         <form id="svarformen" action='<?=url("inlagg/postasvar")?>' method="post">
-                            <textarea class="textarea" id="tarea<?=$row->id?>" form="svarformen" name="data">Skriv ditt svar här...</textarea>
+                            <textarea onfocus="sudda(this);" class="textarea" id="tarea" form="svarformen" name="data">Skriv ditt svar här...</textarea>
                             <input type="hidden" name="userid" value="<?=$this->di->session->get("anvandarid")?>">
                             <input type="hidden" name="tillhor" value="<?=$row->id?>">
                             <input type="hidden" name="type" value="svar">
@@ -95,13 +89,17 @@ $grund = explode("?", $retursida);
                             <input class="submitknapp" type="submit" name="knapp" value="Posta svar">
                         </form>
                     </div>
+
                     <script>
                         var knapp = document.getElementById("svarknapp").addEventListener("click", function() {
                             document.getElementById("svarform").classList.toggle("osynlig");
-                            akf = document.getElementById("tarea<?=$row->id?>");
                         });
+                        function sudda(element) {
+                            if (element.value == 'Skriv ditt svar här...' || element.value == 'Skriv kommentar här...') {
+                                element.value = '';
+                            }
+                        }
                     </script>
-
 
 
                     <div id="kommknapp<?=$row->id?>" class="skrivkommentar">
@@ -109,7 +107,7 @@ $grund = explode("?", $retursida);
                     </div>
                     <div id="form<?=$row->id?>" class="skrivarea osynlig">
                         <form id="formen<?=$row->id?>" action='<?=url("inlagg/postakommentar")?>' method="post">
-                            <textarea class="textarea" id="tarea<?=$row->id?>" form="formen<?=$row->id?>" name="data">Skriv kommentar här...</textarea>
+                            <textarea onfocus="sudda(this);" class="textarea" id="tarea<?=$row->id?>" form="formen<?=$row->id?>" name="data">Skriv kommentar här...</textarea>
                             <input type="hidden" name="userid" value="<?=$this->di->session->get("anvandarid")?>">
                             <input type="hidden" name="tillhor" value="<?=$row->id?>">
                             <input type="hidden" name="type" value="kommentar">
@@ -123,8 +121,8 @@ $grund = explode("?", $retursida);
                             akf = document.getElementById("tarea<?=$row->id?>");
                         });
                         var namnknapp = document.getElementById("user<?=$row->id?>").addEventListener("click", function() {
-                            userminne = "@<?=$row->anvandarnamn?>";
-                            akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionStart);
+                            userminne = "**@<?=$row->anvandarnamn?>";
+                            akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionEnd);
                         });
                     </script>
 
@@ -167,7 +165,7 @@ $grund = explode("?", $retursida);
             <script>
             var namnknapp = document.getElementById("user<?=$row->id?>").addEventListener("click", function() {
                 userminne = "**@<?=$row->anvandarnamn?>**";
-                akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionStart);
+                akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionEnd);
             });
             </script>
 
@@ -182,29 +180,30 @@ $grund = explode("?", $retursida);
                 </a>
                 <i>Postat <?=$row->published?> av <div id="user<?=$row->id?>" class="inl"> <?=$row->anvandarnamn?> </div></i>
 
-                <?php if($row->godkant==false && $this->di->session->get("anvandarid")) { ?>
+                <?php if ($row->godkant==false && $this->di->session->get("anvandarid")) { ?>
                     <form method="post" action='<?=url("inlagg/acceptera")?>/<?=$row->id?>'>
                         <input type="hidden" name="retursida" value="<?=$retursida?>">
-                        <input class="varning tomknapp" type="submit" value="Obs! Detta svar har ännu inte granskats och godkänts. Inloggad kan du klicka här om du accepterar svaret.">
+                        <br><div class="varning">Obs! Detta svar har ännu inte granskats och godkänts.</div>
+                        <input class="varning tomknapp" type="submit" value="Inloggad kan du klicka här om du accepterar svaret.">
                     </form>
 
                 <?php } ?>
 
-                <?php if($row->godkant==false && $this->di->session->get("anvandarid")==null) { ?>
+                <?php if ($row->godkant==false && $this->di->session->get("anvandarid")==null) { ?>
 
 
-                        <div class="varning">Obs! Detta svar har ännu inte granskats och godkänts. Inloggad kan du klicka här om du accepterar svaret.</div>
+                        <div class="varning">Obs! Detta svar har ännu inte granskats och godkänts. <br>Inloggad kan du klicka här om du accepterar svaret.</div>
 
 
                 <?php } ?>
 
 
 
-                <?php if($row->godkant==true) { ?>
+                <?php if ($row->godkant==true) { ?>
                     <br><div class="ok">Svaret är GODKÄNT</div>
                 <?php } ?>
 
-                <?php if($row->godkant==true) { ?>
+                <?php if ($row->godkant==true) { ?>
                 <div class="rankruta">
                     <form method="post" action='<?=url("inlagg/rankauppinlagg")?>/<?=$row->id?>'>
                         <input type="hidden" name="retursida" value="<?=$retursida?>">
@@ -229,7 +228,7 @@ $grund = explode("?", $retursida);
                     <div id="form<?=$row->id?>" class="osynlig">
                         <form id="formen<?=$row->id?>" action='<?=url("inlagg/postakommentar")?>' method="post">
 
-                            <textarea class="textarea" id="tarea<?=$row->id?>"form="formen<?=$row->id?>" name="data">Skriv kommentar här...</textarea>
+                            <textarea onfocus="sudda(this);" class="textarea" id="tarea<?=$row->id?>"form="formen<?=$row->id?>" name="data">Skriv kommentar här...</textarea>
                             <input type="hidden" name="userid" value="<?=$this->di->session->get("anvandarid")?>">
                             <input type="hidden" name="tillhor" value="<?=$row->id?>">
                             <input type="hidden" name="type" value="kommentar">
@@ -244,14 +243,12 @@ $grund = explode("?", $retursida);
                         });
                         var knapp2 = document.getElementById("user<?=$row->id?>").addEventListener("click", function() {
                             userminne = "**@<?=$row->anvandarnamn?>**";
-                            akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionStart);
+                            akf.value = akf.value.slice(0, akf.selectionStart) + userminne + akf.value.slice(akf.selectionEnd);
                         });
                     </script>
                 <?php } ?>
 
             </div>
         <?php } ?>
-
-
 
         <?php endforeach; ?>

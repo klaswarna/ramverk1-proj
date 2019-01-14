@@ -1,10 +1,5 @@
 <?php
-namespace KW\Inlagg;
-
-//$textFilter = new TextFilter();
-
 namespace Anax\View;
-
 
 function max90($tal)
 {
@@ -16,9 +11,7 @@ function max90($tal)
 
 $rank = 2*$res->fraga + 3*$res->svar + $res->kommentar + 2*$res->rfraga + 4*$res->rsvar + $res->rkommentar;
 
-
 ?>
-
 
 <article class="article">
 
@@ -30,7 +23,7 @@ $rank = 2*$res->fraga + 3*$res->svar + $res->kommentar + 2*$res->rfraga + 4*$res
 <h3>Statistik</h3>
 
 <div class="diagramgrund">
-    Aktivitet (antal inlägg)
+    <b>Aktivitet</b> (antal inlägg)
     <div class="stapelgrund">
         <div class="stapeltext">
             Frågor
@@ -59,7 +52,7 @@ $rank = 2*$res->fraga + 3*$res->svar + $res->kommentar + 2*$res->rfraga + 4*$res
             <?=$res->kommentar?>
         </div>
     </div>
-    <br>Kvalitet (poäng på inlägg)
+    <br><b>Kvalitet</b> (poäng på inlägg)
     <div class="stapelgrund">
         <div class="stapeltext">
             Frågor
@@ -88,7 +81,7 @@ $rank = 2*$res->fraga + 3*$res->svar + $res->kommentar + 2*$res->rfraga + 4*$res
     </div>
 
 
-        <br>Sammantaget rykte (beräknat enligt hemlig formel)
+        <br><b>Sammantaget rykte</b> (beräknat enligt vår ryktbarhetsalgoritm)
     <div class="stapelgrund">
         <div class="stapeltext">
             Rykte

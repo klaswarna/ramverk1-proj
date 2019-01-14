@@ -17,8 +17,9 @@ if (null==($this->di->session->get("anvandarnamn"))) { ?>
 
 <h1>Välkommen <?=$this->di->session->get("anvandarnamn")?> </h1>
 
+<a class="sidolank2" href="<?=url("anvandare/anvandarid/" . $this->di->session->get("anvandarid"))?>">
 <img   src='https://www.gravatar.com/avatar/<?php echo(md5(strtolower(trim($this->di->session->get("email"))))) ?>?s=150&d=mp'>
-
+</a>
 
 <p>Din epost: <?=$this->di->session->get("email")?></p>
 

@@ -1,11 +1,11 @@
 USE grammatikgruvan;
 
 
-INSERT INTO `anvandare` (`anvandarnamn`, `losenord`, `email`, `fraga`, `svar`, `kommentar`, `rfraga`, `rsvar`, `rkommentar`) VALUES
+INSERT INTO `anvandare2` (`anvandarnamn`, `losenord`, `email`, `fraga`, `svar`, `kommentar`, `rfraga`, `rsvar`, `rkommentar`) VALUES
     ("Olle", "264fcf838c8e4b9d17c510cd5b8b9b78", "olle@olle.net",4 ,0 ,0, 0, 0, 0),
-    ("Pelle", "5574331fd0ffcb0a268e59f8c5a0cc5d", "pelle@pelle.net",1 ,1 ,0, 0, 0, 0),
-    ("Kalle", "c16e24898200c27d89cd30e9abd51984", "kalle@kalle.net",0 ,2 ,4, 0, 0, 0),
-    ("Lisa", "ed14f4a4d7ecddb6dae8e54900300b1e", "lisa@lisa.net",0 ,0 ,0, 0, 0, 0);
+    ("Pelle", "5574331fd0ffcb0a268e59f8c5a0cc5d", "pelle@pelle.net",0 ,4 ,0, 0, 0, 0),
+    ("Kalle", "c16e24898200c27d89cd30e9abd51984", "kalle@kalle.net",0 ,4 ,1, 0, 0, 0),
+    ("Lisa", "ed14f4a4d7ecddb6dae8e54900300b1e", "lisa@lisa.net",0 ,0 ,3, 0, 0, 0);
 
 
 -- fråga med id 1
@@ -41,7 +41,7 @@ INSERT INTO `inlagg` (`data`, `type`, `rankning`, `userid`, `tillhor`) VALUES
 -- kommentarer. 1 till svar med id8, två till svar med id9
 INSERT INTO `inlagg` (`data`, `type`, `userid`, `tillhor`, `rankning`) VALUES
     ("Korrekt beskrivning, tro jag", "kommentar", 3, 8,0),
-    ("Vilket onödigt inlägg om du inte är säker.", "kommentar", 3, 8,0);
+    ("Vilket onödigt inlägg om du inte är säker.", "kommentar", 4, 8,0);
 
 
 INSERT INTO `inlagg` (`title`, `data`, `type`, `slug`, `rankning`, `userid`) VALUES
