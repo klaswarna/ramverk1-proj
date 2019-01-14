@@ -2,9 +2,9 @@ language: php
 
 php:
     - "7.2"
-    - "7.3" #tillaggt senare
+#    - "7.3" #tillaggt senare
 #    - hhvm
-    - nightly
+#    - nightly
 
 matrix:
     allow_failures:
