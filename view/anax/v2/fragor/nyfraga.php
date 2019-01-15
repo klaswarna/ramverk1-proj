@@ -13,8 +13,8 @@ $retursida= url() . str_replace($base, "", $end);
 <form id="frageform" action='<?=url("inlagg/postafraga")?>' method="post">
 <div class="nyfraga">
 <h2>Skriv ny fråga</h2>
-<input type="text" name="title" value="Skriv titel här..."><br><br>
-    <textarea form="frageform" name="data">Skriv din fråga här...</textarea>
+<input onfocus="sudda(this);" type="text" name="title" value="Skriv titel här..."><br><br>
+    <textarea onfocus="sudda(this);" form="frageform" name="data">Skriv din fråga här...</textarea>
 <br>Koppla befintliga taggar:<br>
 <div class="klicktaggarna">
 <?php foreach ($alltags as $key => $tag) { ?>
@@ -30,3 +30,11 @@ $retursida= url() . str_replace($base, "", $end);
 <input type="submit" value="Posta fråga">
 </div>
 </form>
+
+<script>
+    function sudda(element) {
+        if (element.value == 'Skriv din fråga här...' || element.value == 'Skriv titel här...') {
+            element.value = '';
+        }
+    }
+</script>
