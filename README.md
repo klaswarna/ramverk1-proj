@@ -47,14 +47,6 @@ cp -r -T vendor/klaswarna/ramverk1-proj/sql sql
 
 Add "KW\": "src/" to autoload, prs-4  in the file site/composer.json
 
-Type
-
-<pre><code>
-cd site
-
-composer update
-</pre></code>
-
 Now point your browser to [your folder]/site/htdocs and the web site will appear.
 
 To make it work properly, a a local php-server and database must be available. The databas can be
