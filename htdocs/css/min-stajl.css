@@ -6646,8 +6646,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 
 
 .rankruta {
-    display:none;
-    /*för att bli av med hamburgermenyn display: inline;*/
+    display: inline;
     float:right;
     font-size: 2em;
     width: 2em;
