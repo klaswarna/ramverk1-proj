@@ -27,6 +27,7 @@ class AnvandareController implements ContainerInjectableInterface
         $anvandare      = new Anvandare($this->di);
         $taggar         = new Taggar($this->di);
         $fragehamtaren  = new Fragehamtaren($this->di);
+        $hamtaren       = new Hamtaren($this->di);
 
         $taggarna   = [];
         $antalsvar  = [];
@@ -57,7 +58,7 @@ class AnvandareController implements ContainerInjectableInterface
         $res3 = $anvandare->anvandarensSvar($id);
 
         foreach ($res3 as $rad) {
-            $slugg = $this->hamtaren->inlaggetHarSluggen($rad->tillhor);
+            $slugg = $hamtaren->inlaggetHarSluggen($rad->tillhor);
             array_push($sluggar, $slugg);
         }
 
